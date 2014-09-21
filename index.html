@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TwitReader using OAuth</title>
+
+
+	<!-- jquery-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+	<!-- oAuth -->
+	<script src="libs\oauth.min.js"></script>
+
+	<!-- bootstraps -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+	<!-- angular -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+
+	<!-- my scripts -->
+	<script src="scripts\app.js"></script>
+	<script src="scripts\controllers.js"></script>
+	<script src="scripts\services.js"></script>
+	
+</head>
+<body ng-app="twitReader">
+	<div class="container" ng-controller="twitController"></div>
+	<h1>TwitReader using OAuth and AngularJS</h1>
+	<div class="row">
+		<!-- add buttons to log in, log out and refresh tweets
+			 actions are 'glued' to function from the controller
+			 thanks to the directives ng-controller and ng-click
+		 -->	
+		<div class="col-xs-12">
+				<button ng-click="logIn()">connect</button>
+				<button ng-click="logOut()">log out</button>
+				<button ng-click="refreshTweets()">refresh</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12" id="results">
+			<!-- skim through the tweets on the timeline
+				 and show them along their respective profile images
+			 -->
+			<div class="row" ng-repeat="t in tweets">
+				<div class="col-xs-2 col-sm-1">
+					<img ng-src="{{ t.user.profile_image_url }}" class="img-circle">
+				</div>
+				<div class="col-xs-10 col-sm-11">
+					{{ t.user.name }} <br> {{ t.text }}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

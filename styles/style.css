@@ -1,0 +1,13 @@
+/* style.css */
+
+.container
+{
+	margin-top: 20px;
+	margin-bottom: 20px;
+};
+
+#results .row
+{
+	margin-top: 15px;
+	margin-bottom: 15px;
+};
