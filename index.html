@@ -1,14 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html5>
+<html lang="en" ng-app="twitReader">
 <head>
 	<meta charset="UTF-8">
-	<title>TwitReader using OAuth</title>
+	<title>TwitReader - Idiomacy Again</title>
 
+		<!-- angular -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>	
+
+	<!-- my scripts -->
+	<script src="scripts\app.js"></script>
+	<script src="scripts\services.js"></script>
+	<script src="scripts\controllers.js"></script>	
 
 	<!-- jquery-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
-	<!-- oAuth -->
+	<!-- OAuth -->
 	<script src="libs\oauth.min.js"></script>
 
 	<!-- bootstraps -->
@@ -16,42 +24,56 @@
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
-	<!-- angular -->
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 
-	<!-- my scripts -->
-	<script src="scripts\app.js"></script>
-	<script src="scripts\controllers.js"></script>
-	<script src="scripts\services.js"></script>
+
+	
 	
 </head>
-<body ng-app="twitReader">
-	<div class="container" ng-controller="twitController"></div>
-	<h1>TwitReader using OAuth and AngularJS</h1>
-	<div class="row">
-		<!-- add buttons to log in, log out and refresh tweets
-			 actions are 'glued' to function from the controller
-			 thanks to the directives ng-controller and ng-click
-		 -->	
-		<div class="col-xs-12">
-				<button ng-click="logIn()">connect</button>
-				<button ng-click="logOut()">log out</button>
-				<button ng-click="refreshTweets()">refresh</button>
+<body>
+	<div class="container" ng-controller="twitController">
+		<div class="header">
+			<h1>TwitReader - Idiomacy Again</h1>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12" id="results">
-			<!-- skim through the tweets on the timeline
-				 and show them along their respective profile images
-			 -->
-			<div class="row" ng-repeat="t in tweets">
-				<div class="col-xs-2 col-sm-1">
-					<img ng-src="{{ t.user.profile_image_url }}" class="img-circle">
-				</div>
-				<div class="col-xs-10 col-sm-11">
-					{{ t.user.name }} <br> {{ t.text }}
+		<div class="content">
+			<div class"=row">
+				<p>
+					This is an exercice demonstrating the use of angularJS's directives, modules, factories along promises and dereferers in order to retrieve last tweets of a specific account. The authentification is done thanks to OAuth 2.0. The UI is bootstrapped with a bit of jQuery. This is meant for educational purpose. 
+					<br>
+					Sources are on: <br>
+					<a href="https://github.com/lmashraf/twit-reader">https://github.com/lmashraf/twit-reader</a>
+				</p>
+			</div>
+
+			<div class="row">
+				<!-- add buttons to log in, log out and refresh tweets
+					 actions are 'glued' to function from the controller
+					 thanks to the directives ng-controller and ng-click
+				 -->	
+				<div class="col-xs-12">
+						<button ng-click="logIn()" id="loginButton" type="button" class="btn btn-primary btn-lg">log in</button>
+						<button ng-click="logOut()" id="logoutButton" type="button" class="btn btn-info btn-sm" style="display:none;">log out</button>
+						<button ng-click="refreshTweets()" id="refreshButton" type="button" class="btn btn-link btn-sm" style="display:none;">refresh tweets</button>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-xs-12" id="results">
+					<!-- skim through the tweets on the timeline
+						 and show them along their respective profile images
+					 -->
+					<div class="row" ng-repeat="t in tweets">
+						<div class="col-xs-2 col-sm-1">
+							<img ng-src="{{ t.user.profile_image_url }}" class="img-circle">
+						</div>
+						<div class="col-xs-10 col-sm-11">
+							{{ t.user.name }} <br> {{ t.text }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<hr>
+			Humbly written by: Mohammed Achraf LEBRAZI, 2014.
 		</div>
 	</div>
 </body>
