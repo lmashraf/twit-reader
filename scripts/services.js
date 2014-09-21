@@ -3,27 +3,26 @@
 angular.module('twitReader.factories', [])
 	   .factory('twitFactory', function($q)
 	   {
-	   		var _authResult = false;
+	   		var authentificationResult = false;
 
 	   		var factory =
 	   		{
 		   		initialize : function()
 	   			{
-	   				debugger;
 	   				// initialize OAuth with public key of the app
-	   				OAuth.initialize('e6u0TKccWPGCnAqheXQYg76Vf2M', {cache: true});
+	   				// public key was generated through twitter: https://apps.twitter.com/
+	   				OAuth.initialize('4LUtCGNVDQxSUvFkWXJW6lJw3', {cache: true});
 	   				// try to create an authorisation result when the page loads
-	  				_authResult = OAuth.create('twitter');
+	  				authentificationResult = OAuth.create('twitter');
 	   			},
 
 		   		isReady : function()
 		   		{
-		   			return _authResult;
+		   			return authentificationResult;
 		   		},
 
 		   		connectTwitter : function()
 		   		{
-		   			debugger;
 		   			// First we create a work of unit using a deferred object.
 		   			// A deferred represents 'units of work'. It a communication object
 		   			// that signals the start, progress and completion of work
@@ -39,7 +38,7 @@ angular.module('twitReader.factories', [])
 	   						//cache means to execute the callback if the tokens are already present
 	   						if(!error)
 	   						{
-	   							_authResult = result;
+	   							authentificationResult = result;
 	   							deferred.resolve(result);
 	   						}
 	   						else
@@ -55,7 +54,7 @@ angular.module('twitReader.factories', [])
 		   		clearCache : function()
 		   		{
 		   			OAuth.clearCache('twitter');
-		   			_authResult = false;
+		   			authentificationResult = false;
 		  		},
 
 				getLatestTweets : function()
@@ -64,12 +63,12 @@ angular.module('twitReader.factories', [])
 					var deferred = $q.defer();
 		  		
 		  			// Make a promise out of the deferred object
-		   			var promise = _authResult.get('/1.1/statuses/home_timeline.json')
+		   			var promise = authentificationResult.get('/1.1/statuses/home_timeline.json')
 		   									 .done(function(data)
 		  									 	{
 		  									 		// Once the data is treated and retrieve thanks to Twitter's REST API
 		  									 		// We would like to resolve the deferred object
-		   									 		deferred.resolve();
+		   									 		deferred.resolve(data);
 		   									 	});
 		   				// Return the promise from the deferred object.
 		   				return deferred.promise;
