@@ -37,9 +37,10 @@
 					<br><br>Sources are on: 
 					<br>
 					<a href="https://github.com/lmashraf/twit-reader">https://github.com/lmashraf/twit-reader</a>
+					<hr>
 				</p>
 			</div>
-			<div class="error">
+			<div class="status">
 				<p id="statusMessage">
 					<!-- Placeholder for error messages -->
 				</p>
@@ -62,12 +63,13 @@
 					<!-- skim through the tweets on the timeline
 						 and show them along their respective profile images
 					 -->
-					<div class="row" ng-repeat="t in tweets">
+					<div class="row" ng-repeat="t in tweets ">
 						<div class="col-xs-2 col-sm-1">
 							<img ng-src="{{ t.user.profile_image_url }}" class="img-circle">
 						</div>
 						<div class="col-xs-10 col-sm-11">
 							<b>{{ t.user.name }}</b> <br> {{ t.text }}
+							<hr>
 						</div>
 					</div>
 				</div>
