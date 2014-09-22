@@ -6,12 +6,12 @@
 
 		<!-- angular -->
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>	
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
 
 	<!-- my scripts -->
 	<script src="scripts\app.js"></script>
 	<script src="scripts\services.js"></script>
-	<script src="scripts\controllers.js"></script>	
+	<script src="scripts\controllers.js"></script>
 
 	<!-- jquery-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -22,29 +22,28 @@
 	<!-- bootstraps -->
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-
-
-	
-	
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">	
 </head>
 <body>
 	<div class="container" ng-controller="twitController">
 		<div class="header">
 			<h1>TwitReader - Idiomacy Again</h1>
+
 		</div>
 		<div class="content">
 			<div class"=row">
 				<p>
-					This is an exercice demonstrating the use of angularJS's directives, modules, factories along promises and dereferers in order to retrieve last tweets of a specific account. The authentification is done thanks to OAuth 2.0. The UI is bootstrapped with a bit of jQuery. 
-					<br><br>This is meant for educational purpose. 
+					This is a small app demonstrating the use of angularjs' directives, modules, factories along promises and dereferers for educational purpose. TwitReader is meant to retrieve the 20 last tweets of one's feed. The authentification is done using to OAuth 2.0. The UI is bootstrapped with a bit of jQuery. 
 					<br><br>Sources are on: 
 					<br>
 					<a href="https://github.com/lmashraf/twit-reader">https://github.com/lmashraf/twit-reader</a>
 				</p>
 			</div>
-
+			<div class="error">
+				<p id="statusMessage">
+					<!-- Placeholder for error messages -->
+				</p>
+			</div>
 			<div class="row">
 				<!-- add buttons to log in, log out and refresh tweets
 					 actions are 'glued' to function from the controller

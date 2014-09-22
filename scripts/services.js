@@ -3,15 +3,16 @@
 angular.module('twitReader.factories', [])
 	   .factory('twitFactory', function($q)
 	   {
-	   		var authentificationResult = false;
+	   		var PUBLIC_KEY_OAUTH = 'SbQIspWCFyZymN7beGCmPVsnr';
 
+	   		var authentificationResult = false;   		
 	   		var factory =
 	   		{
 		   		initialize : function()
 	   			{
 	   				// initialize OAuth with public key of the app
 	   				// public key was generated through twitter: https://apps.twitter.com/
-	   				OAuth.initialize('4LUtCGNVDQxSUvFkWXJW6lJw3', {cache: true});
+	   				OAuth.initialize(PUBLIC_KEY_OAUTH, {cache: true});
 	   				// try to create an authorisation result when the page loads
 	  				authentificationResult = OAuth.create('twitter');
 	   			},
@@ -40,10 +41,14 @@ angular.module('twitReader.factories', [])
 	   						{
 	   							authentificationResult = result;
 	   							deferred.resolve(result);
+
+	   							$('#statusMessage').addClass('text-success');
+	   							$('#statusMessage').text("Success!")
 	   						}
 	   						else
 	   						{
-	   							console.log("Failed to log into Twitter!");
+	   							$('#statusMessage').addClass('text-danger');
+	   							$('#statusMessage').text("Authetification failed!")
 	   						}
 	   					});	
 

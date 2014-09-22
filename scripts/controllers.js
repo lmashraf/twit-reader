@@ -16,9 +16,9 @@ twitControllers.twitController = function($scope, $q, twitFactory)
 		$scope.refreshTweets = function()
 		{
 			twitFactory.getLatestTweets().then(function(data)
-				{
-					$scope.tweets = data;
-				});
+			{
+				$scope.tweets = data;
+			});
 		}
 
 		// once the user clicks connect, a popup would show up
@@ -26,8 +26,8 @@ twitControllers.twitController = function($scope, $q, twitFactory)
 		// this must use the methods defined in the twitFactory
 		$scope.logIn = function()
 		{
-			twitFactory.connectTwitter().then(function(){
-
+			twitFactory.connectTwitter().then(function()
+			{
 				// if the authentification is successful,
 				// we would like to hide the log in button...
 				if(twitFactory.isReady())
